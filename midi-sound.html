@@ -1,0 +1,33 @@
+<head>
+  <title>midi-check</title>
+</head>
+
+<body>
+  <h1>Welcome to the Midi-Checker!</h1>
+  <div>
+ 	 <div>Connect your Midi-Keyboard and get some Info:</div>
+ 	 <div class="main">
+ 	 	{{> main}}
+ 	 </div>
+
+  </div>
+
+  {{> hello}}
+</body>
+
+
+<template name="main">
+	{{#each devices}}
+		<div class="device">
+			<p>Manufacturer: {{this.manufacturer}}</p>
+			<p>ID: {{this.id}}</p>	
+			<p>Name: {{this.name}}</p>
+			<p>Version: {{this.version}}</p>
+			<p>InputLevel: {{getInput this}}</p>
+		</div>
+	{{/each}}
+</template>
+<template name="hello">
+  <button>Click Me and nothing happens</button>
+  <p>You've wasted {{counter}} clicks in your life.</p>
+</template>
