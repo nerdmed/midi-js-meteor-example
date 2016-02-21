@@ -6,8 +6,6 @@ class WebMidiManager {
         this.inputLevel = new ReactiveVar(0);
         this.activeInputs = new ReactiveArray();
         this.activeOutputs = new ReactiveArray();
-
-        this.midiSound = new MidiSound();
     }
 
   /*
@@ -125,7 +123,7 @@ class WebMidiManager {
           noteOn = true;
       }
 
-      this.midiSound.play(note, velocity, noteOn);
+      midiSound.play(note, velocity, noteOn);
 
       if (percentage) {
           this.inputLevel.set(percentage);
@@ -203,6 +201,7 @@ Template.hello.events({
   'click button': function () {
     // increment the counter when button is clicked
     Session.set('counter', Session.get('counter') + 1);
+    midiSound.load();
   }
 });
 
