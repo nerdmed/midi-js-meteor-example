@@ -1,3 +1,30 @@
+var midiSoundIsLoaded = false;
+
+Meteor.startup(function(){
+  activateMIDISounds();
+})
+
+function activateMIDISounds() {
+    window.midiSound.load().then(() => {
+      midiSoundIsLoaded = true;
+    }).catch((e) => {
+        console.error(e);
+
+    });
+}
+function midiSoundListener(msg) {
+    if (msg.isNoteOn === true) {
+      console.log(msg, 'noteON')
+        midiSound.noteOn(msg.key, msg.velocity);
+    } else if (msg.isNoteOff === true) {
+        midiSound.noteOff(msg.key, msg.velocity);
+    } else if (msg.sustain != null) {
+        midiSound.setSustain(msg.sustain);
+    }
+}
+
+
+
 class WebMidiManager {
 
     constructor(parameters = {}) {
@@ -98,7 +125,7 @@ class WebMidiManager {
   }
 
   _midiMessageHandler(msg) {
-      console.log(1, '[MidiManager] got midimessage: ', msg);
+      // console.log(1, '[MidiManager] got midimessage: ', msg);
 
       // get velocity
       let velocity = 0;
@@ -123,7 +150,12 @@ class WebMidiManager {
           noteOn = true;
       }
 
-      midiSound.play(note, velocity, noteOn);
+      if(midiSoundIsLoaded) midiSoundListener({
+        isNoteOn: noteOn,
+        key: note,
+        isNoteOff: !noteOn,
+        velocity: velocity
+      });
 
       if (percentage) {
           this.inputLevel.set(percentage);
@@ -201,7 +233,7 @@ Template.hello.events({
   'click button': function () {
     // increment the counter when button is clicked
     Session.set('counter', Session.get('counter') + 1);
-    midiSound.load();
   }
 });
+
 
