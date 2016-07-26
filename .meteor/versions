@@ -24,6 +24,7 @@ ejson@1.0.7
 ephemer:reactive-array@1.0.0
 es5-shim@4.1.14
 fastclick@1.0.7
+flowkey:midi-sound@0.0.7
 flowkey:web-midi-api-shim@1.0.1
 geojson-utils@1.0.4
 hot-code-push@1.0.0
@@ -38,7 +39,6 @@ livedata@1.0.15
 logging@1.0.8
 meteor@1.1.10
 meteor-base@1.0.1
-midi-sound@0.0.6
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1

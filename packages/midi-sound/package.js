@@ -1,6 +1,6 @@
 Package.describe({
-    name: 'midi-sound',
-    version: '0.0.6',
+    name: 'flowkey:midi-sound',
+    version: '0.0.7',
 
     // Brief, one-line summary of the package.
     summary: 'Plays MIDI Sounds in the Browser',
@@ -16,7 +16,7 @@ Package.describe({
 Package.onUse(function(api) {
     api.versionsFrom('1.2.1');
     api.use('ecmascript');
-    api.use(['reactive-var', 'flowkey:web-midi-api-shim'], 'client');
+    api.use(['reactive-var', 'flowkey:web-midi-api-shim@1.0.1'], 'client');
 
     api.addFiles([
       'lib/Base64.js',
